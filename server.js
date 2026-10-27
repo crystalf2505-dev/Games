@@ -4,18 +4,18 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
+// Example word list for the game
 const WORDS = ['apple', 'bingo', 'candy', 'delta', 'eagle', 'fable', 'grape', 'honey', 'ivory', 'joker']; // Example words
 
 const games = new Map();
-
+// Endpoint to start a new game 
 app.post("/api/new-game", (req, res) => {
     const gameId = crypto.randomUUID(); // Generate a unique game ID
     const answer = WORDS[Math.floor(Math.random() * WORDS.length)]; // Randomly select a word
     games.set(gameId, {answer, guesses: [], finished: false});
    res.json({gameId, maxAttempts: 6}); // Return the game ID and max attempts
 });
-
+// Endpoint to make a guess
 app.post("/api/guess", (req, res) => {
     const { gameId, guess } = req.body;
     const game = games.get(gameId);

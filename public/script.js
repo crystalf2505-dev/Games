@@ -32,7 +32,7 @@ function createBoard() {
 function createKeyboard() {
     keyboard.innerHTML = "";
     const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
-    rows.forEach((letter,rowIndex) => {
+    rows.forEach((letters,rowIndex) => {
         const row = document.createElement("div");
         row.className = "keyboard-row";
 
